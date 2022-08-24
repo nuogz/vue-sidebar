@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@fortawesome/fontawesome-svg-core': ^6.1.2
   '@fortawesome/vue-fontawesome': ^3.0.1
-  '@nuogz/css-var': ^2.0.0
-  '@nuogz/utility': ^1.2.0
+  '@nuogz/css-var': ^2.0.1
+  '@nuogz/utility': ^1.2.1
   '@vitejs/plugin-vue': ^3.0.3
   autoprefixer: ^10.4.8
   eslint: ^8.22.0
@@ -18,8 +18,8 @@ specifiers:
 devDependencies:
   '@fortawesome/fontawesome-svg-core': 6.1.2
   '@fortawesome/vue-fontawesome': 3.0.1_sqiqa7hvpgqdakjrbqzbqxvzme
-  '@nuogz/css-var': 2.0.0
-  '@nuogz/utility': 1.2.0
+  '@nuogz/css-var': 2.0.1
+  '@nuogz/utility': 1.2.1
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
   autoprefixer: 10.4.8_postcss@8.4.16
   eslint: 8.22.0
@@ -149,13 +149,13 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@nuogz/css-var/2.0.0:
-    resolution: {integrity: sha512-C5VhrMTYj1I8Y0xjvDNIAAMyBPSN2KlKNDgytk1VH+4ooRzunibadgiBmQG+dWN5pXXBt3UkfG0TDxTO0/htUg==}
+  /@nuogz/css-var/2.0.1:
+    resolution: {integrity: sha512-Wz2usf9X5omQFGiW/kOxOwEzaL/JCZahYBYWZbn9Y+1pT+T6OTZJqKBadf6r63gEFFICmhw2+yn65nlVYwrMDw==}
     engines: {node: '>=14.18.1'}
     dev: true
 
-  /@nuogz/utility/1.2.0:
-    resolution: {integrity: sha512-MkxQpZCHIjZBt9gliglySxDv0NFjSe4+GWt7b5mLREo465ex5aECQQohGd8hCHWMH/+vre+ARWrGnkJUHgoZZg==}
+  /@nuogz/utility/1.2.1:
+    resolution: {integrity: sha512-Uig9uBtdteG2/Jj18KqPeQ0Vb1XaUApSAL0n+Orr637Lo4F2qFv39KuZ3SBsUtadnX9qD6HqWhpcOF96NkF28w==}
     engines: {node: '>=14.18.1'}
     dev: true
 
@@ -377,7 +377,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001382
-      electron-to-chromium: 1.4.227
+      electron-to-chromium: 1.4.228
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
     dev: true
@@ -505,8 +505,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium/1.4.227:
-    resolution: {integrity: sha512-I9VVajA3oswIJOUFg2PSBqrHLF5Y+ahIfjOV9+v6uYyBqFZutmPxA6fxocDUUmgwYevRWFu1VjLyVG3w45qa/g==}
+  /electron-to-chromium/1.4.228:
+    resolution: {integrity: sha512-XfDHCvou7CsDMlFwb0WZ1tWmW48e7Sn7VBRyPfZsZZila9esRsJl1trO+OqDNV97GggFSt0ISbWslKXfQkG//g==}
     dev: true
 
   /esbuild-android-64/0.14.54:

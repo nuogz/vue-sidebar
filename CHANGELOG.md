@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.1.1 - 2022.08.24 16
+* move main file to `src/Sidebar.vue` from `src/index.vue`
+* improve package info
+* improve `.eslintrc.cjs` for lint better
+
+
 ## v1.1.0 - 2022.08.24 09
 * change top-level element to `comp-sidebar` from `p-sidebar`
 * change load-module inject key to `load-module` from `loadModule`

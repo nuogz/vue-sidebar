@@ -1,6 +1,6 @@
 {
 	"name": "@nuogz/vue-sidebar",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "sidebar component based on vue.js 3.x",
 	"author": "Nuogz",
 	"license": "LGPL-3.0-or-later",
@@ -16,17 +16,15 @@
 	"engines": {
 		"node": ">=14.18.1"
 	},
-	"exports": {
-		".": "./src/Sidebar.vue"
-	},
+	"main": "./src/index.vue",
 	"files": [
-		"src/**"
+		"./src/**"
 	],
 	"devDependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.2",
 		"@fortawesome/vue-fontawesome": "^3.0.1",
-		"@nuogz/css-var": "^2.0.0",
-		"@nuogz/utility": "^1.2.0",
+		"@nuogz/css-var": "^2.0.1",
+		"@nuogz/utility": "^1.2.1",
 		"@vitejs/plugin-vue": "^3.0.3",
 		"autoprefixer": "^10.4.8",
 		"eslint": "^8.22.0",
@@ -39,8 +37,8 @@
 	},
 	"peerDependencies": {
 		"@fortawesome/vue-fontawesome": "^3",
-		"@nuogz/css-var": "^2.0.0",
-		"@nuogz/utility": "^1.2.0",
+		"@nuogz/css-var": "^2.0.1",
+		"@nuogz/utility": "^1.2.1",
 		"vue": "^3"
 	}
 }
