@@ -1,5 +1,5 @@
 <template>
-	<p-sidebar v-if="!$hidden" ref="domSidebar" @contextmenu.self.prevent="showMenuSidebar">
+	<comp-sidebar v-if="!$hidden" ref="domSidebar" @contextmenu.self.prevent="showMenuSidebar">
 		<slot name="buttons-before" />
 		<template v-for="(tab, index) of tabs.list" :key="`tab-${tab?.id}`">
 			<template v-if="!tab.isHidden">
@@ -26,7 +26,7 @@
 				</p-tab>
 			</template>
 		</template>
-	</p-sidebar>
+	</comp-sidebar>
 </template>
 
 <script>
@@ -56,7 +56,7 @@
 	watch($hidden, hidden => CV.widthSidebar = hidden ? '0rem' : '7rem', { immediate: true });
 
 
-	const loadModule = inject('loadModule')(moduleNow);
+	const loadModule = inject('load-module')(moduleNow);
 
 
 	const modulePre = ref('');
@@ -67,7 +67,7 @@
 </script>
 
 <style lang="sass" scoped>
-p-sidebar
+comp-sidebar
 	@apply fixed z-50 shadow-mdd p-1 bg-gray-100
 	width: var(--widthSidebar)
 	height: calc(100% - var(--heightTopbar))
