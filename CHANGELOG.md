@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.2 - 2022.08.30 02
+* fix `package.files`
+* bump up dependencies
+
+
 ## v1.1.1 - 2022.08.24 16
 * move main file to `src/Sidebar.vue` from `src/index.vue`
 * improve package info
