@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.4 - 2022.09.15 18
+* fix typo
+
+
 ## v1.1.3 - 2022.09.15 18
 * support `CV.widthSidebar` from outside
 * bump up dependencies
