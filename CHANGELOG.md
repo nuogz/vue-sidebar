@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.3 - 2022.09.15 18
+* support `CV.widthSidebar` from outside
+* bump up dependencies
+
+
 ## v1.1.2 - 2022.08.30 02
 * fix `package.files`
 * bump up dependencies

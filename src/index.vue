@@ -53,7 +53,7 @@
 	});
 
 	const $hidden = computed(() => parseBoolProp(props.hidden));
-	watch($hidden, hidden => CV.widthSidebar = hidden ? '0rem' : '7rem', { immediate: true });
+	watch($hidden, hidden => CV.widthSidebar = CV.widthSidebar ? CV.widthSidebar : hidden ? '0rem' : '7rem', { immediate: true });
 
 
 	const loadModule = inject('load-module')(moduleNow);
