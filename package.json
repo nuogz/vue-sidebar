@@ -1,6 +1,6 @@
 {
 	"name": "@nuogz/vue-sidebar",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"description": "sidebar component based on Vue.js 3.x",
 	"author": "Nuogz",
 	"license": "LGPL-3.0-or-later",
@@ -13,13 +13,14 @@
 		"browser",
 		"vue"
 	],
-	"typings": "./src/index.d.ts",
+	"typings": "./index.d.ts",
 	"engines": {
 		"node": ">=14.18.1"
 	},
 	"sideEffects": false,
-	"main": "./src/index.vue",
+	"main": "./index.js",
 	"files": [
+		"index.js",
 		"src/**",
 		"**/*.d.ts"
 	],

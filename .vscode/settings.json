@@ -1,7 +1,6 @@
 {
 	"eslint.experimental.useFlatConfig": true,
 	"files.trimTrailingWhitespace": true,
-	"javascript.preferences.importModuleSpecifierEnding": "js",
 	"volar.format.initialIndent": {
 		"javascript": true,
 		"html": true,

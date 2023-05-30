@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.1.0 - 2023.05.30 18
+* (break) `Sidebar` is no longer exported as default. It is normal export now.
+* (new) export class `TabAdmin` now
+* improve files struct
+* improve declaration files
+
+
 ## v2.0.1 - 2023.05.30 14
 * remove useless package
 

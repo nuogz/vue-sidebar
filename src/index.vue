@@ -36,15 +36,13 @@
 	import { bropBoolean } from '@nuogz/utility';
 	import CV from '@nuogz/css-var';
 
-	import TabAdmin from './lib/TabAdmin.js';
+	import TabAdmin from './tab-admin.js';
 
 
 
 	export const moduleNow = ref(null);
 
 	export const tabs = new TabAdmin();
-
-	export { Tab } from './lib/TabAdmin.js';
 </script>
 
 <script setup>
