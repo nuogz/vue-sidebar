@@ -1,6 +1,6 @@
 {
 	"name": "@nuogz/vue-sidebar",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "sidebar component based on Vue.js 3.x",
 	"author": "Nuogz",
 	"license": "LGPL-3.0-or-later",
@@ -17,6 +17,7 @@
 	"engines": {
 		"node": ">=14.18.1"
 	},
+	"sideEffects": false,
 	"main": "./src/index.vue",
 	"files": [
 		"src/**",
@@ -35,8 +36,7 @@
 		"sass": "^1.62.1",
 		"tailwindcss": "^3.3.2",
 		"vite": "^4.3.9",
-		"vue": "^3.3.4",
-		"vue-tsc": "^1.6.5"
+		"vue": "^3.3.4"
 	},
 	"peerDependencies": {
 		"@fortawesome/vue-fontawesome": "^3",

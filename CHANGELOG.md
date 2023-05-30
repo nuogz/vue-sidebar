@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.1 - 2023.05.30 14
+* remove useless package
+
+
 ## v2.0.0 - 2023.05.30 14
 * renew codes and rename some TabAdmin properties
 * add declaration files and improve inline jsdoc
