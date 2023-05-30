@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v2.0.0 - 2023.05.30 14
+* renew codes and rename some TabAdmin properties
+* add declaration files and improve inline jsdoc
+* bump up dependencies
+	* update `typescript` to `v5.x`, and renew jsdoc
+* use eslint flat config, and related config udpate
+	* use `eslint.config.js` instead `eslintrc.cjs`
+* update recommanded extensions
+	* use `Volar` instead `Vetur`
+
+
 ## v1.1.4 - 2022.09.15 18
 * fix typo
 

@@ -33,7 +33,7 @@
 	import { ref, watch, inject, computed } from 'vue';
 	import { FontAwesomeIcon as Fas } from '@fortawesome/vue-fontawesome';
 
-	import { parseBoolProp } from '@nuogz/utility';
+	import { bropBoolean } from '@nuogz/utility';
 	import CV from '@nuogz/css-var';
 
 	import TabAdmin from './lib/TabAdmin.js';
@@ -52,7 +52,8 @@
 		hidden: { type: [String, Boolean], default: false },
 	});
 
-	const $hidden = computed(() => parseBoolProp(props.hidden));
+
+	const $hidden = computed(() => bropBoolean(props.hidden));
 	watch($hidden, hidden => CV.widthSidebar = CV.widthSidebar ? CV.widthSidebar : hidden ? '0rem' : '7rem', { immediate: true });
 
 
