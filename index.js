@@ -1,4 +1,4 @@
-import Sidebar, { moduleNow, tabs } from './src/index.vue';
+import { default as Sidebar, moduleNow, tabs } from './src/index.vue';
 
 export { Sidebar, moduleNow, tabs };
 

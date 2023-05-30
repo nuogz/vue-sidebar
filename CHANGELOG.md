@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.1.1 - 2023.05.30 18
+* tweak import
+
+
 ## v2.1.0 - 2023.05.30 18
 * (break) `Sidebar` is no longer exported as default. It is normal export now.
 * (new) export class `TabAdmin` now
