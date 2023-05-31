@@ -3,7 +3,7 @@
 	"files.trimTrailingWhitespace": true,
 	"volar.format.initialIndent": {
 		"javascript": true,
-		"html": true,
+		"html": true
 	},
-	"volar.inlayHints.eventArgumentInInlineHandlers": false
+	"vue.inlayHints.inlineHandlerLeading": false
 }
