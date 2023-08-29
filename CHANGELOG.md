@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.2.3 - 2023.08.30 00
+* remove useless dependencies
+
+
 ## v2.2.2 - 2023.08.29 15
 * tweak style
 
