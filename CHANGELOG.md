@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.2.0 - 2023.08.29 14
+* update color-related CSS variables
+* bump up dependencies
+
+
 ## v2.1.1 - 2023.05.30 18
 * tweak import
 

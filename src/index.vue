@@ -67,11 +67,11 @@
 
 <style lang="sass" scoped>
 comp-sidebar
-	@apply fixed z-50 shadow-mdd p-1 bg-gray-100
+	@apply fixed z-50 shadow-mdd p-1
 	width: var(--widthSidebar)
 	height: calc(100% - var(--heightTopbar))
 	top: var(--heightTopbar)
-	background-color: var(--colorMain)
+	background-color: var(--cMain)
 
 	svg
 		@apply mr-1
@@ -82,12 +82,12 @@ comp-sidebar
 
 	p-tab
 		@apply relative block rounded-md text-center text-base shadow-mdd mt-2 cursor-pointer outline-none h-8 leading-8
-		width: calc( var(--widthSidebar) - 0.55rem)
-		background-color: var(--colorTextMain)
-		color: var(--colorText)
+		width: calc(var(--widthSidebar) - var(--widthScroll))
+		color: var(--cTextBack)
+		background-color: var(--cBack)
 
 		&:focus
-			@apply ring-2 ring-yellow-500
+			@apply ring-2 ring-[var(--cSidebarRingFocus)]
 
 		&[profile]
 			@apply font-bold mt-0
@@ -96,7 +96,7 @@ comp-sidebar
 			@apply overflow-hidden px-1
 
 			&:focus-within
-				@apply overflow-visible w-24 ring-2 ring-yellow-500
+				@apply overflow-visible w-24 ring-2 ring-[var(--cRingFocus)]
 
 			input
 				@apply rounded-md w-full text-center outline-none z-20 bg-transparent
@@ -105,7 +105,7 @@ comp-sidebar
 			@apply w-48
 
 		&[now]
-			@apply ring-2 ring-pink-400
+			@apply ring-2 ring-[var(--cSidebarRingNow)]
 
 		p-header
 			@apply relative block rounded-md shadow-md absolute top-1 left-1 bg-cover

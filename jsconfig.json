@@ -1,11 +1,18 @@
 {
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "NodeNext",
-		"target": "ESNext",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"target": "esnext",
+		"strict": true,
+		"allowJs": true,
+		"jsx": "preserve",
 		"experimentalDecorators": true,
-		"strict": true
 	},
+	"include": [
+		"index.js",
+		"src/**/*.js",
+		"src/**/*.vue",
+	],
 	"exclude": [
 		"node_modules"
 	]
