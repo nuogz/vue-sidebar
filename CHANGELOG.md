@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.2.1 - 2023.08.29 14
+* add tailwind configuration for intellisense
+
+
 ## v2.2.0 - 2023.08.29 14
 * update color-related CSS variables
 * bump up dependencies

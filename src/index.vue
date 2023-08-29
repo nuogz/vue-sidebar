@@ -46,6 +46,10 @@
 </script>
 
 <script setup>
+	import './index.pcss';
+
+
+
 	const props = defineProps({
 		hidden: { type: [String, Boolean], default: false },
 	});
