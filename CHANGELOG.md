@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.2.2 - 2023.08.29 15
+* tweak style
+
+
 ## v2.2.1 - 2023.08.29 14
 * add tailwind configuration for intellisense
 

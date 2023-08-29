@@ -85,7 +85,7 @@ comp-sidebar
 
 
 	p-tab
-		@apply relative block rounded-md text-center text-base shadow-mdd mt-2 cursor-pointer outline-none h-8 leading-8
+		@apply relative block rounded-sm text-center text-base shadow-mdd mt-2 cursor-pointer outline-none h-8 leading-8
 		width: calc(var(--widthSidebar) - var(--widthScroll))
 		color: var(--cTextBack)
 		background-color: var(--cBack)
@@ -103,7 +103,7 @@ comp-sidebar
 				@apply overflow-visible w-24 ring-2 ring-[var(--cRingFocus)]
 
 			input
-				@apply rounded-md w-full text-center outline-none z-20 bg-transparent
+				@apply rounded-sm w-full text-center outline-none z-20 bg-transparent
 
 		&[keyword]:focus-within
 			@apply w-48
@@ -112,7 +112,7 @@ comp-sidebar
 			@apply ring-2 ring-[var(--cSidebarRingNow)]
 
 		p-header
-			@apply relative block rounded-md shadow-md absolute top-1 left-1 bg-cover
+			@apply relative block rounded-sm shadow-md absolute top-1 left-1 bg-cover
 			width: calc(100% - 0.5rem)
 			height: calc(100% - 0.5rem)
 </style>
