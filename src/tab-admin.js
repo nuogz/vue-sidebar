@@ -1,15 +1,21 @@
-import { reactive } from 'vue';
+import { reactive, toRef, unref } from 'vue';
 
 import { randomString } from '@nuogz/utility';
 
 
 
 /**
- * @typedef {Object} TabParam
- * @property {string} typeList the type of tab in the tab list
- * @property {Object | Array<string> | string | import('@fortawesome/fontawesome-svg-core').IconDefinition} icon fontawesome icon (if typeList)
- * @property {string} title
- * @property {string} header the url of tab image
+ * @typedef {Object} TabOption
+ * @property {string} type type of how to show tab info in tab list
+ * @property {string} typeList type of tab in tab list
+ * @property {Object | Array<string> | string | import('@fortawesome/fontawesome-svg-core').IconDefinition} [icon] fontawesome icon (if typeList)
+ * @property {string} [title]
+ * @property {string} [header] the url of tab image
+ * @property {boolean} [only]
+ * @property {boolean} [hidden]
+ * @property {boolean} [delay]
+ * @property {Object} [style]
+ * @property {import('@howdyjs/mouse-menu/dist/types').CustomMouseMenuOptions} [menu]
  */
 
 export class Tab {
@@ -20,20 +26,20 @@ export class Tab {
 
 	/** @type {string} */
 	typeTab;
-	/** @type {TabParam} */
-	paramsTab;
-
-
 	/** @type {string} */
 	typeList;
+
+
+	/** @type {TabOption} */
+	option;
+
+
 	/** @type {Object | Array<string> | string | import('@fortawesome/fontawesome-svg-core').IconDefinition} */
 	icon;
 	/** @type {string} */
 	title;
 	/** @type {string} */
 	header;
-	/** @type {boolean} */
-	isHidden;
 
 
 	/** @type {Object<string, any>} */
@@ -45,30 +51,32 @@ export class Tab {
 	paramsDelay;
 
 
+	/** @type {boolean} */
+	inited = false;
+
+
 
 	/**
 	 * @param {string} id
 	 * @param {string} module
 	 * @param {string} typeTab
-	 * @param {TabParam} paramsTab
-	 * @param {boolean} isHidden
+	 * @param {TabOption} option
 	 * @param {Object<string, any>} params
 	 */
-	constructor(id, module, typeTab, paramsTab = {}, isHidden, params) {
-		const { typeList, icon, title, header } = paramsTab;
+	constructor(id, module, option = {}, params) {
+		const { type = 'icon|title', typeList, icon, title, header } = option;
 
 		this.id = id;
 		this.module = module;
 
-		this.typeTab = typeTab;
-
-		this.paramsTab = paramsTab;
+		this.typeTab = type;
 		this.typeList = typeList ?? module;
+
+		this.option = option;
+
 		this.icon = icon;
 		this.title = title;
 		this.header = header;
-
-		this.isHidden = isHidden ?? false;
 
 		this.info = {};
 		this.params = params ?? {};
@@ -106,31 +114,25 @@ export default class TabAdmin {
 
 	/**
 	 * @param {string} module
-	 * @param {string} typeTab Any combination of `icon`, `icon-cron`, `title`, and `header`. Separator is `|`
-	 * @param {TabParam} paramsTab
-	 * @param {string} flagsTab Any combination of `once`, `hidden`, and `delay`. Separator is `|`
-	 * @param {...any} paramsModule
+	 * @param {TabOption} option
+	 * @param {...any} params
 	 * @returns {Tab}
 	 */
-	add(module, typeTab = 'icon-title', paramsTab = {}, flagsTab = '', ...paramsModule) {
+	add(module, option = {}, ...params) {
 		const idTab = randomString();
 
 
-		const flagsTabParsed = flagsTab.split('|');
-
-		const isOnce = flagsTabParsed.includes('once');
-		const isHidden = flagsTabParsed.includes('hidden');
-		const isDelay = flagsTabParsed.includes('delay');
-
-
 		const tab =
-			(isOnce ? Object.values(this.tabs$id).find(t => t.typeList == paramsTab.typeList) : undefined) ||
-			(this.tabs$id[idTab] = new Tab(idTab, module, typeTab, paramsTab, isHidden));
+			(option.only ? Object.values(this.tabs$id).find(t => t.typeList == option.typeList) : undefined) ??
+			(this.tabs$id[idTab] = new Tab(idTab, module, option));
 
 
-		if(tab && !isDelay) { this.change(tab, ...paramsModule); }
-
-		if(isDelay) { tab.paramsDelay = paramsModule; }
+		if(option.delay) {
+			tab.paramsDelay = params;
+		}
+		else {
+			this.change(tab, ...params);
+		}
 
 
 		return tab;
@@ -181,25 +183,52 @@ export default class TabAdmin {
 		if(this.historiesTab[this.historiesTab.length - 1] !== tab) { this.historiesTab.push(tab); }
 
 
-		this.emitChanged();
+		this.emitChanged('change');
 	}
 
 
-	emitChanged() {
-		(this.changers[this.now.typeList] ?? [])
-			.forEach(changer => {
-				try {
-					changer(this.now);
+	async emitChanged(reason) {
+		const handlesTab = this.handlesTab$typeList[this.now.typeList];
+		if(!handlesTab) { return; }
+
+
+		for(const [refTab, handleInit, handleChange] of handlesTab) {
+			try {
+				refTab.value = this.now;
+
+
+				if(!this.now.inited && typeof handleInit == 'function') {
+					await handleInit(this.now, reason);
+
+					this.now.inited = true;
 				}
-				catch(error) { void 0; }
-			});
+
+				if(typeof handleChange == 'function') {
+					await handleChange(this.now, reason);
+				}
+			}
+			catch(error) { void 0; }
+		}
 	}
 
-	/** @type {Object<string, Function[]>} */
-	changers = {};
+	/**
+	 * @typedef {Object} TabHandle
+	 * @property {import('vue').Ref<Tab>} refTab
+	 * @property {Function} handleInit
+	 * @property {Function} handleChange
+	 */
+
+
+	/** @type {Object<string, TabHandle[]>} */
+	handlesTab$typeList = {};
 	/**
 	 * @param {string} typeListTab
-	 * @param {Function} handle
+	 * @param {import('vue').Ref<Tab>} refTab
+	 * @param {Function} handleInit
+	 * @param {Function} handleChange
 	 */
-	addChanger(typeListTab, handle) { (this.changers[typeListTab] ?? (this.changers[typeListTab] = [])).push(handle); }
+	addTabHandle(typeListTab, refTab, handleInit, handleChange) {
+		(this.handlesTab$typeList[typeListTab] ?? (this.handlesTab$typeList[typeListTab] = []))
+			.push([refTab, handleInit, handleChange]);
+	}
 }

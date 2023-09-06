@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v2.3.0 - 2023.09.06 20
+* (break) change export `tabs` to `tabAdmin`
+* (new) new event `show-menu-background` now
+* (new) export `domSidebar` now
+* (new) tab option support `style` and `@howdyjs/mouse-menu`'s `menu` option
+* (break) restuct `TabOption`. Move flags `once`,`delay` and `hidden` into `TabOption`
+* (break) rename Tab option `once` to `only`
+* (break) restuct `TabAdmin`.`addChanger` to `TabAdmin`.`addTabHandle`
+* improve style
+* bump up dependencies
+
+
 ## v2.2.3 - 2023.08.30 00
 * remove useless dependencies
 

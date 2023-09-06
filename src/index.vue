@@ -1,23 +1,27 @@
 <template>
-	<comp-sidebar v-if="!$hidden" ref="domSidebar" @contextmenu.self.prevent="showMenuSidebar">
+	<comp-sidebar v-if="!$hidden" ref="domSidebar" back-scheme="main" @contextmenu.self.prevent="emit('show-menu', $event)">
 		<slot name="buttons-before" />
-		<template v-for="(tab, index) of tabs.list" :key="`tab-${tab?.id}`">
-			<template v-if="!tab.isHidden">
+		<template v-for="(tab, index) of tabAdmin.list" :key="`tab-${tab?.id}`">
+			<template v-if="!tab.option.hidden">
 				<p-tab
 					v-tip.right="tab.title"
-					:now="brop(tabs.now === tab)"
-					:tabindex="100 + index"
-					@click="tabs.change(tab)" @keydown.enter.space="tabs.change(tab)"
+					v-menu="{ params: tab, ...tab.option.menu }"
+					:now="brop(tabAdmin.now === tab)"
+					:tabindex="1000 + index"
+					:style="tab.option.style"
+					@click="tabAdmin.change(tab)"
+					@keydown.enter.space="tabAdmin.change(tab)"
 				>
-					<template v-if="tab.typesTab.includes('icon') && tab.icon">
-						<Fas :icon="tab.icon" />
-					</template>
 					<template v-if="tab.typesTab.includes('icon-corn') && tab.icon">
 						<Fas :icon="tab.icon" corn />
 					</template>
 
+					<template v-if="tab.typesTab.includes('icon') && tab.icon">
+						<Fas :icon="tab.icon" />
+					</template>
+
 					<template v-if="tab.typesTab.includes('title') && tab.title">
-						<p-title>{{tab.title}}</p-title>
+						{{ tab.typesTab.includes('icon') ? ' ' : '' }}<p-title>{{ tab.title }}</p-title>
 					</template>
 
 					<template v-if="tab.typesTab.includes('header') && tab.header">
@@ -33,62 +37,56 @@
 	import { ref, watch, inject, computed } from 'vue';
 	import { FontAwesomeIcon as Fas } from '@fortawesome/vue-fontawesome';
 
-	import { bropBoolean } from '@nuogz/utility';
-	import CV from '@nuogz/css-var';
+	import { brop, bropBoolean } from '@nuogz/utility';
 
 	import TabAdmin from './tab-admin.js';
 
 
-
-	export const moduleNow = ref(null);
-
-	export const tabs = new TabAdmin();
-</script>
-
-<script setup>
 	import './index.pcss';
 
 
 
+	export const moduleNow = ref(null);
+	export const tabAdmin = new TabAdmin();
+	export const domSidebar = ref(null);
+</script>
+
+<script setup>
 	const props = defineProps({
-		hidden: { type: [String, Boolean], default: false },
+		/** （开关）隐藏 */
+		hidden: { type: [Boolean, String], default: false },
 	});
+	const emit = defineEmits(['show-menu-background']);
 
 
 	const $hidden = computed(() => bropBoolean(props.hidden));
-	watch($hidden, hidden => CV.widthSidebar = CV.widthSidebar ? CV.widthSidebar : hidden ? '0rem' : '7rem', { immediate: true });
-
-
-	const loadModule = inject('load-module')(moduleNow);
 
 
 	const modulePre = ref('');
-	watch(modulePre, loadModule);
+	watch(modulePre, inject('load-module')(moduleNow));
 
 
-	tabs.modulePre = modulePre;
+	tabAdmin.modulePre = modulePre;
 </script>
 
 <style lang="sass" scoped>
 comp-sidebar
-	@apply fixed z-50 shadow-mdd p-1
+	@apply fixed z-50 shadow-mdd p-1 bg-[var(--cMain)] overflow-x-hidden overflow-y-scroll
 	width: var(--widthSidebar)
 	height: calc(100% - var(--heightTopbar))
 	top: var(--heightTopbar)
-	background-color: var(--cMain)
 
-	svg
-		@apply mr-1
-
-		&[corn]
-			@apply absolute opacity-25 z-10 text-xs top-1 left-1
-
+	svg[corn]
+		@apply absolute opacity-25 z-10 text-xs top-1 left-1
 
 	p-tab
-		@apply relative block rounded-sm text-center text-base shadow-mdd mt-2 cursor-pointer outline-none h-8 leading-8
-		width: calc(var(--widthSidebar) - var(--widthScroll))
-		color: var(--cTextBack)
-		background-color: var(--cBack)
+		@apply relative block h-8 px-2 mb-2
+		@apply rounded-sm cursor-pointer outline-none shadow-mdd select-none
+		@apply elli text-left text-base leading-8 text-[var(--TextBack)] bg-[var(--cBack)]
+		width: calc(var(--widthSidebar) - var(--spc) * 4)
+
+		&:first-of-type
+			@apply mt-2
 
 		&:focus
 			@apply ring-2 ring-[var(--cSidebarRingFocus)]
@@ -112,7 +110,8 @@ comp-sidebar
 			@apply ring-2 ring-[var(--cSidebarRingNow)]
 
 		p-header
-			@apply relative block rounded-sm shadow-md absolute top-1 left-1 bg-cover
+			@apply relative block rounded-sm shadow-md absolute top-1 left-1
+			@apply bg-center bg-contain bg-no-repeat
 			width: calc(100% - 0.5rem)
 			height: calc(100% - 0.5rem)
 </style>
