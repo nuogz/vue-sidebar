@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.3.1 - 2023.09.07 08
+* fix typo
+
+
 ## v2.3.0 - 2023.09.06 20
 * (break) change export `tabs` to `tabAdmin`
 * (new) new event `show-menu-background` now

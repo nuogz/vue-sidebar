@@ -1,6 +1,6 @@
 {
 	"name": "@nuogz/vue-sidebar",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "sidebar component based on Vue.js 3.x",
 	"author": "nuogz",
 	"license": "LGPL-3.0-or-later",

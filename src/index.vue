@@ -1,5 +1,5 @@
 <template>
-	<comp-sidebar v-if="!$hidden" ref="domSidebar" back-scheme="main" @contextmenu.self.prevent="emit('show-menu', $event)">
+	<comp-sidebar v-if="!$hidden" ref="domSidebar" back-scheme="main" @contextmenu.self.prevent="emit('show-menu-background', $event)">
 		<slot name="buttons-before" />
 		<template v-for="(tab, index) of tabAdmin.list" :key="`tab-${tab?.id}`">
 			<template v-if="!tab.option.hidden">
