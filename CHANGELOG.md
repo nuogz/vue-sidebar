@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.3.2 - 2023.09.07 09
+* remove useless import
+
+
 ## v2.3.1 - 2023.09.07 08
 * fix typo
 
