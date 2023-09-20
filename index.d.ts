@@ -1,6 +1,6 @@
-import Sidebar, { moduleNow, tabs } from './src/index.vue.js';
+import Sidebar, { moduleNow, tabAdmin, domSidebar } from './src/index.vue.js';
 
-export { Sidebar, moduleNow, tabs };
+export { Sidebar, moduleNow, tabAdmin, domSidebar };
 
 
 export { TabAdmin, Tab } from './src/tab-admin.js';

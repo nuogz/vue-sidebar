@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.3.3 - 2023.09.20 09
+* renew d.ts
+* bump up dependencies
+
+
 ## v2.3.2 - 2023.09.07 09
 * remove useless import
 
