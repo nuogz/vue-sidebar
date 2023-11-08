@@ -10,6 +10,7 @@ import { randomString } from '@nuogz/utility';
  * @property {string} typeList type of tab in tab list
  * @property {Object | Array<string> | string | import('@fortawesome/fontawesome-svg-core').IconDefinition} [icon] fontawesome icon (if typeList)
  * @property {string} [title]
+ * @property {string} [tipsTitle] tips displayed on mouse hover
  * @property {string} [header] the url of tab image
  * @property {boolean} [only]
  * @property {boolean} [hidden]
@@ -41,6 +42,9 @@ export class Tab {
 	/** @type {string} */
 	header;
 
+	/** @type {string} */
+	tipsTitle;
+
 
 	/** @type {Object<string, any>} */
 	info;
@@ -64,7 +68,7 @@ export class Tab {
 	 * @param {Object<string, any>} params
 	 */
 	constructor(id, module, option = {}, params) {
-		const { type = 'icon|title', typeList, icon, title, header } = option;
+		const { type = 'icon|title', typeList, icon, title, header, tipsTitle } = option;
 
 		this.id = id;
 		this.module = module;
@@ -77,6 +81,7 @@ export class Tab {
 		this.icon = icon;
 		this.title = title;
 		this.header = header;
+		this.tipsTitle = tipsTitle;
 
 		this.info = {};
 		this.params = params ?? {};
@@ -85,7 +90,12 @@ export class Tab {
 	get typesTab() { return this.typeTab?.split('|') ?? []; }
 }
 
+const sUseHandleInit = Symbol('use-handle-init');
 export default class TabAdmin {
+	static sUseHandleInit = sUseHandleInit;
+	sUseHandleInit = sUseHandleInit;
+
+
 	/** @type {Object<string, Tab>} */
 	tabs$id = {};
 
@@ -131,7 +141,7 @@ export default class TabAdmin {
 			tab.paramsDelay = params;
 		}
 		else {
-			this.change(tab, ...params);
+			this.change(tab, 'create-tab', true, ...params);
 		}
 
 
@@ -154,10 +164,10 @@ export default class TabAdmin {
 			const tabLast = this.historiesTab.pop();
 
 			if(tabLast) {
-				this.change(tabLast);
+				this.change(tabLast, 'remove-tab');
 			}
 			else {
-				this.change(map[ids[index + 1] ?? ids[index - 1]]);
+				this.change(map[ids[index + 1] ?? ids[index - 1]], 'remove-tab');
 			}
 		}
 
@@ -168,25 +178,29 @@ export default class TabAdmin {
 
 	/**
 	 * @param {Tab} tab
+	 * @param {string} [reason]
+	 * @param {boolean} [withParams=false]
 	 * @param {...any} params
 	 */
-	change(tab, ...params) {
+	change(tab, reason, withParams = false, ...params) {
 		if(this.idTabNow == tab.id) { return; }
 
 		this.idTabNow = tab.id;
 		this.modulePre = tab.module;
 
-		tab.params = tab.paramsDelay ?? params;
-		delete tab.paramsDelay;
+		if(withParams) {
+			tab.params = tab.paramsDelay ?? params;
+			delete tab.paramsDelay;
+		}
 
 
 		if(this.historiesTab[this.historiesTab.length - 1] !== tab) { this.historiesTab.push(tab); }
 
 
-		this.emitChanged('change');
+		this.emitChanged(reason);
 	}
 
-
+	/** @param {string} [reason] */
 	async emitChanged(reason) {
 		const handlesTab = this.handlesTab$typeList[this.now.typeList];
 		if(!handlesTab) { return; }
@@ -202,12 +216,14 @@ export default class TabAdmin {
 
 					this.now.inited = true;
 				}
-
-				if(typeof handleChange == 'function') {
+				else if(typeof handleChange == 'function') {
 					await handleChange(this.now, reason);
 				}
+				else if(handleChange === TabAdmin.sUseHandleInit) {
+					await handleInit(this.now, reason);
+				}
 			}
-			catch(error) { void 0; }
+			catch(error) { globalThis.console.error('Occur error when emitting change tab.', error) }
 		}
 	}
 
@@ -215,7 +231,7 @@ export default class TabAdmin {
 	 * @typedef {Object} TabHandle
 	 * @property {import('vue').Ref<Tab>} refTab
 	 * @property {Function} handleInit
-	 * @property {Function} handleChange
+	 * @property {Function|Symbol} handleChange
 	 */
 
 

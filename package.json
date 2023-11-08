@@ -1,8 +1,8 @@
 {
 	"name": "@nuogz/vue-sidebar",
-	"version": "2.3.3",
+	"version": "2.4.0",
 	"description": "sidebar component based on Vue.js 3.x",
-	"author": "nuogz",
+	"author": "DanoR",
 	"license": "LGPL-3.0-or-later",
 	"repository": {
 		"type": "git",
@@ -26,17 +26,17 @@
 	],
 	"devDependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
-		"@fortawesome/vue-fontawesome": "^3.0.3",
-		"@howdyjs/mouse-menu": "^2.0.9",
+		"@fortawesome/vue-fontawesome": "^3.0.5",
+		"@howdyjs/mouse-menu": "^2.1.1",
 		"@nuogz/utility": "^1.7.1",
-		"autoprefixer": "^10.4.15",
-		"eslint": "^8.49.0",
-		"eslint-plugin-vue": "^9.17.0",
-		"postcss": "^8.4.30",
-		"sass": "^1.67.0",
-		"tailwindcss": "^3.3.3",
-		"vue": "^3.3.4",
-		"vue-eslint-parser": "^9.3.1"
+		"autoprefixer": "^10.4.16",
+		"eslint": "^8.53.0",
+		"eslint-plugin-vue": "^9.18.1",
+		"postcss": "^8.4.31",
+		"sass": "^1.69.5",
+		"tailwindcss": "^3.3.5",
+		"vue": "^3.3.8",
+		"vue-eslint-parser": "^9.3.2"
 	},
 	"peerDependencies": {
 		"@fortawesome/vue-fontawesome": "^3",

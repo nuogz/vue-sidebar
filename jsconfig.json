@@ -3,10 +3,10 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"target": "esnext",
+		"experimentalDecorators": true,
 		"strict": true,
 		"allowJs": true,
 		"jsx": "preserve",
-		"experimentalDecorators": true,
 	},
 	"include": [
 		"index.js",

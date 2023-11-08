@@ -1,7 +1,6 @@
 import { DefineComponent, PropType, Ref } from 'vue';
 
 
-
 import TabAdmin from './tab-admin.js';
 
 export const moduleNow: Ref<string>;

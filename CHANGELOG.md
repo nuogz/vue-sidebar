@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v2.4.0 - 2023.11.08 16
+* (break) `TabAdmin`.`emitChanged` no longer triggers `init handle` and `change handle` at the same time
+* (break) `TabAdmin`.`change` need to pass optional arguments `reason` and `withParams` after `tab`
+* (new) new symbol `sUseHandleInit` for `TabAdmin`.`addTabHandle`'s argument `handleChange`
+* (new) new option `TabOption`.`tipsTitle`
+* bump up dependencies
+* renew environment
+
+
 ## v2.3.3 - 2023.09.20 09
 * renew d.ts
 * bump up dependencies

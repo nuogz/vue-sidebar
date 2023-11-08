@@ -5,5 +5,5 @@
 		"javascript": true,
 		"html": true
 	},
-	"vue.inlayHints.inlineHandlerLeading": false
+	"vue.inlayHints.missingProps": true,
 }

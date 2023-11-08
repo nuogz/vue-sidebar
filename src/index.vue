@@ -4,13 +4,13 @@
 		<template v-for="(tab, index) of tabAdmin.list" :key="`tab-${tab?.id}`">
 			<template v-if="!tab.option.hidden">
 				<p-tab
-					v-tip.right="tab.title"
+					v-tip.right="tab.tipsTitle || tab.title"
 					v-menu="{ params: tab, ...tab.option.menu }"
 					:now="brop(tabAdmin.now === tab)"
 					:tabindex="1000 + index"
 					:style="tab.option.style"
-					@click="tabAdmin.change(tab)"
-					@keydown.enter.space="tabAdmin.change(tab)"
+					@click="tabAdmin.change(tab, 'switch-tab')"
+					@keydown.enter.space="tabAdmin.change(tab, 'switch-tab-key')"
 				>
 					<template v-if="tab.typesTab.includes('icon-corn') && tab.icon">
 						<Fas :icon="tab.icon" corn />

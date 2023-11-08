@@ -26,6 +26,7 @@ module.exports = {
 					display: 'inline-block',
 					verticalAlign: 'top',
 				},
+
 				// text ellipsis
 				'.elli': {
 					overflow: 'hidden',
@@ -43,6 +44,15 @@ module.exports = {
 				}),
 			},
 				{ values: theme('trans') }
+			);
+
+			// line height with border
+			matchUtilities({
+				'lead-b1': size => ({ 'line-height': `calc(${size} - 1px * 2)` }),
+				'lead-b2': size => ({ 'line-height': `calc(${size} - 2px * 2)` }),
+				'lead-b4': size => ({ 'line-height': `calc(${size} - 4px * 2)` }),
+			},
+				{ values: theme('lineHeight') }
 			);
 		}),
 	],
