@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.4.1 - 2023.12.06 15
+* tweak enviroment
+* bump up dependencies
+
+
 ## v2.4.0 - 2023.11.08 16
 * (break) `TabAdmin`.`emitChanged` no longer triggers `init handle` and `change handle` at the same time
 * (break) `TabAdmin`.`change` need to pass optional arguments `reason` and `withParams` after `tab`
